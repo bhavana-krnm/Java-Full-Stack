@@ -1,0 +1,10 @@
+img{
+    width: 100px;
+    height: 50px;
+    margin: 10px 15px 20px;
+    border-style: solid;
+    border-width:0.5cm;
+    border-color: aqua brown gray black;
+    border-radius: 10px;
+    padding: 0.5cm 2cm 1cm 4cm;
+}

@@ -1,0 +1,16 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: violet;
+    color: black;
+}
+.meet{
+    flex-direction: column;
+    list-style: squcare;
+}
+ul{
+    display: flex;
+    gap: 2cm;
+    list-style: circle;
+}

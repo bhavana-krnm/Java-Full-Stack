@@ -1,0 +1,15 @@
+img{
+    width: 300px;
+    
+}
+body{
+    background-color: lightblue;
+}
+#content{
+    color: red;
+    gap: 1cm;
+}
+h1{
+    color: green;
+    font-size: 50px;
+}
