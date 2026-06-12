@@ -1,4 +1,4 @@
-/*let name="dia";
+let name="dia";
 var age=20;
 const height=5.5;
 console.log(name);
@@ -26,7 +26,7 @@ console.log(age>=age1);
 console.log(age<=age1);
 console.log(age==age1);
 console.log(age!=age1);
-let food="pizza";
+/*let food="pizza";
 let breakfast="dosa";
 let food1="idly";
 let food2="dosa";
@@ -55,7 +55,7 @@ else if(breakfast==food4)
 else
 {
     console.log("Sorry, " + food + " is not available for breakfast.");
-}*/
+}
 /*let amount=4800;
 let notes=0;
 let reminder=0;
@@ -161,7 +161,7 @@ guess(number);
     n+=1;
     num(n);
 }
-num(1);*/
+num(1);
 let chocolate=["melody","dairy milk","perk","kitkat","munch","5 star"];
 let sales={
     dia:chocolate[0],
@@ -171,4 +171,4 @@ let sales={
     swathi:chocolate[4],
     anusha:chocolate[5]
 };
-console.log(sales);
+console.log(sales);*/
