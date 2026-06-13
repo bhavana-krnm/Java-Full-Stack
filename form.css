@@ -1,0 +1,11 @@
+#details{
+    justify-content: space-between;
+    align-items:flex-start;
+    gap: 20px;
+}
+.photo{
+    width: 200px;
+    height: 200px;  
+    border-radius: 50%;
+    order:1;
+}
