@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>K Bhavana | Data Analyst Portfolio</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      --bg: #03171f;
+      --surface: #042231;
+      --surface-light: rgba(5, 50, 69, 0.92);
+      --surface-soft: rgba(5, 50, 69, 0.72);
+      --border: rgba(41, 188, 221, 0.3);
+      --text: #e9fcff;
+      --muted: rgba(209, 246, 255, 0.85);
+      --accent: #34d6f1;
+      --accent-hover: #26b3cc;
+      --output-bg: rgba(8, 38, 53, 0.92);
+      --shadow: 0 26px 55px rgba(2, 17, 25, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      color: var(--text);
+      background: radial-gradient(circle at 10% 10%, rgba(52, 209, 233, 0.12), transparent 16%),
+        radial-gradient(circle at 90% 15%, rgba(42, 114, 151, 0.12), transparent 14%),
+        linear-gradient(180deg, #041a24 0%, #03171f 100%);
+    }
+
+    .page {
+      width: min(100%, 980px);
+    }
+
+    .hero {
+      position: relative;
+      background: rgba(3, 35, 46, 0.96);
+      border: 1px solid rgba(55, 209, 232, 0.2);
+      border-radius: 52px 32px 52px 32px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 24px;
+      overflow: hidden;
+    }
+
+    .hero-top {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: minmax(0, 1.4fr) minmax(220px, 360px);
+      align-items: start;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero-avatar {
+      width: 100%;
+      border-radius: 42px;
+      background: linear-gradient(180deg, rgba(7, 46, 64, 0.95), rgba(9, 55, 79, 0.92));
+      border: 1px solid rgba(51, 211, 237, 0.25);
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: inset 0 0 0 1px rgba(52, 209, 233, 0.08), 0 24px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-avatar img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(52, 209, 233, 0.35);
+      margin-bottom: 16px;
+      box-shadow: 0 18px 35px rgba(2, 12, 18, 0.35);
+    }
+
+    .hero-avatar span {
+      display: block;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(153, 243, 255, 0.93);
+      margin-bottom: 8px;
+    }
+
+    .hero-avatar p {
+      margin: 0;
+      color: rgba(208, 245, 255, 0.88);
+      line-height: 1.7;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      color: rgba(192, 241, 255, 0.92);
+      max-width: 720px;
+      line-height: 1.75;
+    }
+
+    .hero-info {
+      display: grid;
+      gap: 10px;
+      padding: 20px;
+      border-radius: 28px;
+      background: rgba(9, 49, 61, 0.9);
+      min-width: 260px;
+      border: 1px solid rgba(55, 209, 232, 0.16);
+    }
+
+    .hero-info strong {
+      display: block;
+      color: #b9f6ff;
+      margin-bottom: 4px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(56, 219, 240, 0.15);
+      color: var(--accent);
+      font-weight: 700;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      border: 1px solid rgba(56, 219, 240, 0.28);
+    }
+
+    .section-grid {
+      display: grid;
+      gap: 22px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: rgba(5, 35, 48, 0.95);
+      border: 1px solid rgba(55, 209, 232, 0.14);
+      border-radius: 40px 36px 40px 36px;
+      padding: 28px;
+      box-shadow: 0 18px 45px rgba(1, 18, 27, 0.24);
+      backdrop-filter: blur(4px);
+    }
+
+    .card h2 {
+      margin: 0 0 16px;
+      font-size: 1.4rem;
+      color: #e6ffff;
+    }
+
+    .card p,
+    .card li {
+      margin: 0 0 12px;
+      line-height: 1.7;
+      color: rgba(198, 241, 255, 0.92);
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .button-row button {
+      border: 1px solid rgba(56, 219, 240, 0.3);
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: rgba(56, 219, 240, 0.14);
+      color: #e7fbff;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 30px rgba(13, 126, 145, 0.08);
+    }
+
+    .button-row button:hover {
+      transform: translateY(-1px);
+      background: rgba(56, 219, 240, 0.24);
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-list li {
+      padding: 14px 16px;
+      border-radius: 22px;
+      background: rgba(12, 56, 69, 0.9);
+      border: 1px solid rgba(56, 219, 240, 0.14);
+    }
+
+    .project-output {
+      margin-top: 16px;
+      padding: 22px;
+      border-radius: 32px;
+      background: rgba(6, 36, 49, 0.9);
+      border: 1px solid rgba(56, 219, 240, 0.2);
+      color: rgba(198, 241, 255, 0.92);
+    }
+
+    .hero-avatar {
+      width: 180px;
+      padding: 18px;
+      border-radius: 40px;
+      background: rgba(6, 36, 49, 0.95);
+      border: 1px solid rgba(56, 219, 240, 0.18);
+      text-align: center;
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-avatar img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(56, 219, 240, 0.45);
+      margin-bottom: 16px;
+    }
+
+    .hero-avatar span {
+      display: block;
+      color: #c8f6ff;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-copy {
+      flex: 1 1 420px;
+    }
+
+    @media (min-width: 860px) {
+      .section-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-top">
+        <div class="hero-copy">
+          <div>
+            <h1 class="hero-title">K Bhavana</h1>
+            <p class="hero-subtitle">
+              Data Analyst from Mother Theresa Institute of Engineering And Technology. I use data storytelling, dashboards, and clean reporting to support smarter business decisions.
+            </p>
+          </div>
+          <div class="hero-info">
+            <div><strong>Degree</strong>Btech</div>
+            <div><strong>College</strong>Mother Theresa Institute of Engineering And Technology</div>
+            <div><strong>Role</strong>Data Analyst</div>
+            <div><strong>Contact</strong>6303752245</div>
+            <div><strong>Email</strong>bhavanakrnm@gmail.com</div>
+          </div>
+        </div>
+        <div class="hero-avatar">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Female profile photo" />
+          <span>Data Analyst</span>
+          <p>Turning raw data into easy-to-read dashboards, reports, and insights with a polished visual style.</p>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="button" onclick="updatePanel('summary')">Summary</button>
+        <button type="button" onclick="updatePanel('skills')">Skills</button>
+        <button type="button" onclick="updatePanel('experience')">Experience</button>
+      </div>
+
+      <div id="outputPanel" class="project-output">
+        <h2>Quick Overview</h2>
+        <p>
+          I am a results-focused Data Analyst building data visualizations, statistical reports, and performance dashboards. I use clear communication and analysis to help teams make smarter decisions.
+        </p>
+      </div>
+    </section>
+
+    <div class="section-grid">
+      <article class="card">
+        <h2>About Me</h2>
+        <p>
+          I am passionate about data, pattern detection, and converting information into actionable insight. My work emphasizes accuracy, visual clarity, and reliable reporting.
+        </p>
+        <p>
+          I enjoy working with data cleaning, exploratory analysis, and presenting results in user-friendly dashboards and summaries.
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>Education</h2>
+        <p><strong>Degree:</strong> Btech</p>
+        <p><strong>College:</strong> Mother Theresa Institute of Engineering And Technology</p>
+        <p><strong>Specialization:</strong> Data Analytics / Computer Science</p>
+      </article>
+
+      <article class="card">
+        <h2>Skills</h2>
+        <ul>
+          <li>Data analysis and reporting</li>
+          <li>Excel and pivot tables</li>
+          <li>SQL queries and database work</li>
+          <li>Data visualization principles</li>
+          <li>Basic Python for analytics</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Contact</h2>
+        <ul class="contact-list">
+          <li><strong>Phone:</strong> 6303752245</li>
+          <li><strong>Email:</strong> bhavanakrnm@gmail.com</li>
+          <li><strong>Location:</strong> Chennai, India</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    const panels = {
+      summary: `
+        <h2>Summary</h2>
+        <p>
+          I am a data analyst who enjoys transforming complex datasets into clear business insights. I focus on accurate analysis, clean reports, and practical recommendations.
+        </p>
+      `,
+      skills: `
+        <h2>Skills</h2>
+        <p>
+          My skillset includes data cleaning, data visualization, Excel, SQL, and basic scripting for analysis. I enjoy turning raw numbers into stories that inform decisions.
+        </p>
+      `,
+      experience: `
+        <h2>Experience</h2>
+        <p>
+          I have worked on academic projects and practical exercises in data analysis, dashboard creation, and reporting. I am ready to contribute to real-world analytics work and internships.
+        </p>
+      `
+    };
+
+    function updatePanel(section) {
+      document.getElementById('outputPanel').innerHTML = panels[section];
+    }
+  </script>
+</body>
+</html>
