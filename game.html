@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Card Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #1a472a;
+            color: white;
+            overflow: hidden;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        #setup-container {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        #setup-container label {
+            font-size: 1rem;
+            margin-right: 5px;
+        }
+        #setup-container input {
+            padding: 3px;
+            font-size: 0.9rem;
+            width: 50px;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+        #start-btn {
+            padding: 5px 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            background: #ffaa00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: black;
+            margin-left: 5px;
+        }
+        #status {
+            font-size: 1rem;
+            font-weight: bold;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 6px 15px;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 90%;
+        }
+        #game-container {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            flex-grow: 1;
+            margin: 10px 0;
+            gap: 5px;
+            overflow: hidden;
+        }
+        .area {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .area h3 {
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+        }
+        .card-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            overflow-y: auto;
+            max-height: 120px;
+            padding: 4px;
+        }
+        .card {
+            width: 55px;
+            height: 82px;
+            border-radius: 6px;
+            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            user-select: none;
+            transition: transform 0.1s;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            flex-shrink: 0;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card.red { background-color: #ff5555; }
+        .card.blue { background-color: #5555ff; }
+        .card.green { background-color: #55aa55; }
+        .card.yellow { background-color: #ffaa00; }
+        .card.wild { background-color: #222222; }
+        .card.back {
+            background-color: #cc1111;
+            background-image: radial-gradient(circle, #aa0000 20%, transparent 20%);
+            background-size: 8px 8px;
+            cursor: default;
+        }
+        .card.back:hover {
+            transform: none;
+        }
+        #center-pile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 5px 0;
+        }
+        #center-pile h4 {
+            margin: 0 0 4px 0;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        #deck {
+            cursor: pointer;
+        }
+        #color-picker {
+            display: none;
+            gap: 10px;
+            margin: 5px 0;
+            justify-content: center;
+        }
+        .color-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+        #draw-preview-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px;
+            border-radius: 8px;
+            gap: 5px;
+        }
+        #draw-preview-container h4 {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .choice-btn-container {
+            display: flex;
+            gap: 10px;
+        }
+        .choice-btn {
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #keep-btn { background-color: #3b82f6; color: white; }
+        #play-btn { background-color: #10b981; color: white; }
+        #restart-btn {
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            background: #ffaa00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: black;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>UNO Card Game</h1>
+    
+    <div id="setup-container">
+        <label for="card-count-input">Starting Cards:</label>
+        <input type="number" id="card-count-input" value="7" min="1" max="15">
+        <button id="start-btn" onclick="initGame()">Start New Game</button>
+    </div>
+
+    <div id="status" style="display:none;">Your turn! Play a matching card or draw a card.</div>
+
+    <div id="game-container">
+        <div class="area">
+            <h3>Computer's Hand (<span id="comp-count">0</span> cards)</h3>
+            <div id="computer-cards" class="card-display"></div>
+        </div>
+
+        <div id="center-pile">
+            <div>
+                <h4>Pickup Pile</h4>
+                <div id="deck" class="card back"></div>
+            </div>
+            <div>
+                <h4>Play Pile</h4>
+                <div id="discard"></div>
+            </div>
+        </div>
+
+        <div id="draw-preview-container">
+            <h4>You Drew:</h4>
+            <div id="drawn-card-preview"></div>
+            <div class="choice-btn-container">
+                <button id="keep-btn" class="choice-btn" onclick="resolveDrawDecision('keep')">Keep Card</button>
+                <button id="play-btn" class="choice-btn" onclick="resolveDrawDecision('play')">Play Card</button>
+            </div>
+        </div>
+
+        <div id="color-picker">
+            <button class="color-btn" style="background:#ff5555" onclick="selectWildColor('red')"></button>
+            <button class="color-btn" style="background:#5555ff" onclick="selectWildColor('blue')"></button>
+            <button class="color-btn" style="background:#55aa55" onclick="selectWildColor('green')"></button>
+            <button class="color-btn" style="background:#ffaa00" onclick="selectWildColor('yellow')"></button>
+        </div>
+
+        <div class="area">
+            <h3>Your Hand</h3>
+            <div id="player-cards" class="card-display"></div>
+        </div>
+
+        <button id="restart-btn" onclick="initGame()">Reset Game</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
