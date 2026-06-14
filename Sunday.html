@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #choco {
+            width: 1cm;
+            height: 1cm;
+            position: relative;
+            background-color: lightblue;
+            border-style: double;
+        }
+    </style>
+</head>
+<body>
+    <div id="choco">
+        
+    </div>
+    <p>Mouse over the space</p>
+    <script>
+        const box=document.getElementById("choco");
+        let x=100;
+        let y=100;
+        const step=10;
+        document.addEventListener("keydown",function(keys)
+        {
+            if(keys.code=="ArrowDown")
+            {
+                y+=step;
+            }
+            else if(keys.code=="ArrowUp")
+            {
+                y-=step;
+            }
+            else if(keys.code=="ArrowLeft")
+            {
+                x-=step;
+            }
+            else if(keys.code=="ArrowRight")
+            {
+                x+=step;
+            }
+            box.style.left=x+"px";
+            box.style.top=y+"px";
+        });
+        const asha=document.getElementById("choco");
+        asha.addEventListener("mouseover",function()
+        {
+            asha.style.backgroundColor="pink";
+            asha.innerText="Dark Chocolate";
+        });
+        asha.addEventListener("mouseout",function()
+        {
+            asha.style.backgroundColor="lightblue";
+            asha.innerText="Kacha Mango";
+        });
+    </script>
+</body>
+</html>
